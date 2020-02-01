@@ -8,8 +8,9 @@ from django.utils.encoding import force_text
 from django.utils.html import format_html
 from django.forms.utils import flatatt
 from django.forms.widgets import (CheckboxInput, Widget, Textarea, MultiWidget)
-
-from .apps import DjkAppConfig
+import sys
+    if 'DjkAppConfig' not in sys.modules:
+        from .apps import DjkAppConfig
 from .models import model_fields_verbose_names
 from .tpl import (
     PrintList, print_list_group, print_bs_well,
