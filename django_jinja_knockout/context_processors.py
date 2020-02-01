@@ -157,7 +157,7 @@ class TemplateContextProcessor():
             return False
 
     def get_user_id(self):
-        import middleware
+        from . import middleware
         return middleware.ThreadMiddleware().get_user_id(self.HttpRequest)
 
     def get_context_data(self):
