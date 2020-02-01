@@ -13,7 +13,6 @@ from .models import get_verbose_name
 from .utils import sdv
 from .viewmodels import vm_list
 from .views import base as base_views
-from . import middleware
 from . import tpl
 
 
@@ -209,3 +208,7 @@ class TemplateContextProcessor():
 # Inherit and extend TemplateContextProcessor class if you want to pass more data to Jinja2 templates.
 def template_context_processor(HttpRequest=None):
     return TemplateContextProcessor(HttpRequest).get_context_data()
+
+
+if __name__ == "__main__":
+    import middleware
