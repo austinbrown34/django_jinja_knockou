@@ -1,8 +1,8 @@
 from django.apps import AppConfig
 from django.conf import settings
 from django.utils.module_loading import import_string
+import sys
 
-from . import middleware
 
 
 class DjkAppConfig(AppConfig):
@@ -12,6 +12,10 @@ class DjkAppConfig(AppConfig):
     @classmethod
     def get_context_middleware(cls):
         if cls.djk_middleware is None:
-            cls.djk_middleware = import_string(settings.DJK_MIDDLEWARE) if hasattr(settings, 'DJK_MIDDLEWARE') \
-                else middleware.ContextMiddleware
+            if hasattr(settings, 'DJK_MIDDLEWARE'):
+                cls.djk_middleware = import_string(settings.DJK_MIDDLEWARE)
+            else:
+                if 'middleware' in dir() and 'middleware' not in sys.modules:
+                    from . import middleware
+                middleware.ContextMiddleware
         return cls.djk_middleware
