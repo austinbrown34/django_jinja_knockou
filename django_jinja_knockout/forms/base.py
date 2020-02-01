@@ -9,8 +9,8 @@ from django import forms
 from django.forms.models import BaseInlineFormSet, ModelFormMetaclass, inlineformset_factory
 from django.contrib.contenttypes.forms import generic_inlineformset_factory
 import sys
-    if 'DjkAppConfig' not in sys.modules:
-        from ..apps import DjkAppConfig
+if 'DjkAppConfig' not in sys.modules:
+    from ..apps import DjkAppConfig
 from ..utils import sdv
 from ..widgets import DisplayText
 from ..viewmodels import to_json
